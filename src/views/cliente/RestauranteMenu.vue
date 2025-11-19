@@ -109,7 +109,7 @@
               
               <div class="producto-categoria">
                 <span class="categoria-tag">
-                  {{ getNombreCategoria(producto.categoria_id) }}
+                  Añadir
                 </span>
               </div>
             </div>
@@ -210,6 +210,7 @@ export default {
 
 <style scoped>
 .menu-container {
+
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;

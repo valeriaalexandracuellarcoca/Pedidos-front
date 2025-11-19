@@ -112,7 +112,6 @@ export default {
       }
     },
     verMenu(restauranteId) {
-      // Usar this.$router que estará disponible después de configurar Vue Router
       this.$router.push({ 
         name: 'RestauranteMenu', 
         params: { id: restauranteId } 
@@ -124,25 +123,25 @@ export default {
 
 <style scoped>
 .restaurantes-container {
-  max-width: 1200px;
+   /* Aumentado de 1200px */
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.5rem; /* Reducido para dar más espacio a las tarjetas */
 }
 
 .header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem; /* Reducido para dar más espacio */
 }
 
 .header h1 {
-  font-size: 2.5rem;
+  font-size: 2.8rem; /* Aumentado */
   color: #2c3e50;
   margin-bottom: 0.5rem;
 }
 
 .subtitle {
   color: #7f8c8d;
-  font-size: 1.1rem;
+  font-size: 1.2rem; /* Aumentado */
 }
 
 /* Loading State */
@@ -152,10 +151,9 @@ export default {
 }
 
 .spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
+  
+  border: 5px solid #f3f3f3; /* Aumentado */
+  border-top: 5px solid #3498db; /* Aumentado */
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 0 auto 1rem;
@@ -173,23 +171,24 @@ export default {
   background: #fee;
   border-radius: 12px;
   color: #c33;
+  margin: 0 1rem; /* Añadido margen lateral */
 }
 
 .error-icon {
-  font-size: 3rem;
+  font-size: 3.5rem; /* Aumentado */
   display: block;
   margin-bottom: 1rem;
 }
 
 .btn-retry {
   margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.85rem 1.75rem; /* Aumentado */
   background: #e74c3c;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.1rem; /* Aumentado */
   transition: background 0.3s;
 }
 
@@ -197,25 +196,29 @@ export default {
   background: #c0392b;
 }
 
-/* Restaurantes Grid */
+/* Restaurantes Grid - CAMBIOS PRINCIPALES */
 .restaurantes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
+  /* Cambiado a 2 columnas en pantallas grandes para tarjetas más anchas */
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 2.5rem; /* Aumentado el espacio entre tarjetas */
 }
 
 .restaurante-card {
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 20px; /* Aumentado */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Aumentada la sombra */
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
   position: relative;
+  min-height: 320px; /* Altura mínima aumentada */
+  display: flex;
+  flex-direction: column;
 }
 
 .restaurante-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px); /* Aumentado el efecto hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Aumentada la sombra en hover */
 }
 
 .restaurante-card.cerrado {
@@ -224,11 +227,11 @@ export default {
 
 .estado-badge {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.5rem 1rem;
+  top: 1.2rem; /* Ajustado */
+  right: 1.2rem; /* Ajustado */
+  padding: 0.6rem 1.2rem; /* Aumentado */
   border-radius: 20px;
-  font-size: 0.875rem;
+  font-size: 1rem; /* Aumentado */
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -247,8 +250,8 @@ export default {
 }
 
 .status-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px; /* Aumentado */
+  height: 10px; /* Aumentado */
   border-radius: 50%;
   background: currentColor;
   animation: pulse 2s infinite;
@@ -260,36 +263,41 @@ export default {
 }
 
 .card-content {
-  padding: 2rem;
-  padding-top: 3rem;
+  padding: 2.5rem; /* Aumentado */
+  padding-top: 3.5rem; /* Aumentado */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .restaurante-nombre {
-  font-size: 1.5rem;
+  font-size: 1.8rem; /* Aumentado */
   color: #2c3e50;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* Aumentado */
 }
 
 .info-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
+  gap: 0.85rem; /* Aumentado */
+  margin-bottom: 1rem; /* Aumentado */
   color: #555;
+  font-size: 1.1rem; /* Aumentado */
 }
 
 .icon {
-  font-size: 1.25rem;
+  font-size: 1.4rem; /* Aumentado */
 }
 
 .stats {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 1.5rem 0;
-  padding: 1rem;
+  margin: 2rem 0; /* Aumentado */
+  padding: 1.2rem; /* Aumentado */
   background: #f8f9fa;
-  border-radius: 8px;
+  border-radius: 12px; /* Aumentado */
+  flex-grow: 1;
 }
 
 .stat-item {
@@ -299,43 +307,44 @@ export default {
 }
 
 .stat-number {
-  font-size: 1.75rem;
+  font-size: 2rem; /* Aumentado */
   font-weight: bold;
   color: #3498db;
 }
 
 .stat-label {
-  font-size: 0.875rem;
+  font-size: 1rem; /* Aumentado */
   color: #7f8c8d;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem; /* Aumentado */
 }
 
 .stat-divider {
-  width: 1px;
-  height: 40px;
+  width: 2px; /* Aumentado */
+  height: 50px; /* Aumentado */
   background: #ddd;
 }
 
 .btn-menu {
   width: 100%;
-  padding: 1rem;
+  padding: 1.2rem; /* Aumentado */
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 10px;
-  font-size: 1rem;
+  border-radius: 12px; /* Aumentado */
+  font-size: 1.1rem; /* Aumentado */
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.7rem; /* Aumentado */
   transition: transform 0.2s, box-shadow 0.3s;
+  margin-top: auto; /* Para posicionar al final de la tarjeta */
 }
 
 .btn-menu:hover:not(:disabled) {
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  transform: scale(1.03); /* Aumentado ligeramente */
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4); /* Aumentada la sombra */
 }
 
 .btn-menu:disabled {
@@ -345,44 +354,82 @@ export default {
 }
 
 .btn-icon {
-  font-size: 1.25rem;
+  font-size: 1.4rem; /* Aumentado */
 }
 
 /* Empty State */
 .empty-state {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 5rem 2rem; /* Aumentado */
 }
 
 .empty-icon {
-  font-size: 4rem;
+  font-size: 5rem; /* Aumentado */
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* Aumentado */
 }
 
 .empty-state h3 {
   color: #2c3e50;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem; /* Aumentado */
+  font-size: 2rem; /* Aumentado */
 }
 
 .empty-state p {
   color: #7f8c8d;
+  font-size: 1.2rem; /* Aumentado */
 }
 
 /* Responsive */
+@media (max-width: 1200px) {
+  .restaurantes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .restaurantes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
   .restaurantes-container {
     padding: 1rem;
   }
 
   .header h1 {
-    font-size: 2rem;
+    font-size: 2.3rem; /* Ajustado para móvil */
   }
 
   .restaurantes-grid {
     grid-template-columns: 1fr;
+    gap: 2rem; /* Aumentado para móvil */
+  }
+  
+  .restaurante-card {
+    min-height: 300px; /* Ajustado para móvil */
+  }
+  
+  .card-content {
+    padding: 2rem;
+    padding-top: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .restaurantes-grid {
     gap: 1.5rem;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+    padding-top: 2.5rem;
+  }
+  
+  .restaurante-nombre {
+    font-size: 1.6rem;
   }
 }
 </style>
