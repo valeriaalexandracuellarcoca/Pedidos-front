@@ -1,68 +1,75 @@
 <template>
-  <div class="max-w-5xl mx-auto px-4 pt-6">
+  <div class="max-w-6xl mx-auto px-4 pt-12">
 
-    <!-- TÍTULO -->
-    <h1 class="text-3xl font-bold text-center">Restaurantes Disponibles</h1>
-    <p class="text-center text-gray-500 mt-1">
-      Descubre nuestros restaurantes y sus deliciosos menús
-    </p>
+    <!-- TITULO -->
+    <header class="text-center mb-10">
+      <h1 class="text-3xl font-bold text-gray-900">Restaurantes Disponibles</h1>
+      <p class="text-gray-500 mt-1">
+        Descubre nuestros restaurantes y sus deliciosos menús
+      </p>
+    </header>
 
     <!-- BANNER YALA -->
-    <div class="relative overflow-hidden rounded-2xl px-8 pt-8 pb-16 text-white shadow-md
-            bg-linear-to-r from-red-500 to-red-400 mb-12">
-      <!-- LOGO -->
-      <div class="flex items-center gap-3 mb-3 relative z-10">
-        <img src="/img/logo-yala.png" class="w-12 h-12 rounded-xl shadow-lg" />
+    <section
+      class="relative overflow-hidden rounded-3xl px-8 pt-10 pb-10 text-white shadow-lg 
+             bg-linear-to-r from-red-600 to-red-400 mb-10">
+
+      <!-- LOGO + TEXTO -->
+      <div class="flex items-center gap-4 mx-4 relative z-10">
+        <img src="/img/logo-yala.png" class="w-24 h-24 rounded-2xl shadow-lg" />
         <div>
           <h3 class="text-2xl font-extrabold tracking-tight">YALA Delivery</h3>
-          <p class="text-sm opacity-90">Tu comida favorita al instante</p>
+          <p class="text-sl opacity-90">Tu comida favorita al instante</p>
         </div>
       </div>
 
       <!-- ONDA SUPERIOR -->
-      <svg class="absolute top-0 left-0 w-full opacity-20" viewBox="0 0 500 150" preserveAspectRatio="none">
-        <path d="M0.00,49.98 C150.00,150.00 349.56,-49.98 500.00,49.98 L500.00,00.00 L0.00,0.00 Z" 
-              style="stroke: none; fill: #ffffff;"></path>
+      <svg
+        class="absolute top-0 left-0 w-full opacity-20 pointer-events-none"
+        viewBox="0 0 500 150"
+        preserveAspectRatio="none">
+        <path
+          d="M0.00,49.98 C150.00,150.00 349.56,-49.98 500.00,49.98 L500.00,00.00 L0.00,0.00 Z"
+          fill="#ffffff" />
       </svg>
-
-    </div>
-
-    <div class="h-6"></div>
+    </section>
 
     <!-- BUSCADOR -->
-    <div class="mt-10">
+    <section class="mb-4">
       <SearchBar v-model="searchQuery" />
-    </div>
+    </section>
 
     <!-- FILTROS -->
-    <div class="mt-6">
+    <section class="mb-12">
       <FiltersSection
         :categorias="uniqueCategorias"
         :filtro-categoria="filtroCategoria"
         @update:filtro-categoria="filtroCategoria = $event"
       />
-    </div>
+    </section>
 
     <!-- DESTACADOS -->
-    <div class="mt-10">
+    <section class="mb-16">
       <RestaurantsCarousel
         titulo="Destacados para ti"
         :restaurantes="restaurantesFiltrados.slice(0, 10)"
         @ver-menu="verMenu"
       />
-    </div>
+    </section>
 
     <!-- TODOS -->
-    <h2 class="text-xl font-bold mt-10 mb-4">Todos los Restaurantes</h2>
+    <section>
+      <h2 class="text-xl font-bold mb-6">Todos los Restaurantes</h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-10">
-      <RestaurantCard
-        v-for="r in restaurantesFiltrados"
-        :key="r.id"
-        :restaurante="r"
-        @click="verMenu(r.id)"
-      />
-    </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-12">
+        <RestaurantCard
+          v-for="r in restaurantesFiltrados"
+          :key="r.id"
+          :restaurante="r"
+          @click="verMenu(r.id)"
+        />
+      </div>
+    </section>
 
   </div>
 </template>
@@ -73,14 +80,14 @@ import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { getRestaurantes } from '@/services/catalogoService';
 
-import HeaderSection from '@/components/client/HederSection.vue';
-import SearchBar from '@/components/client/SearchBar.vue';
-import FiltersSection from '@/components/client/FiltersSection.vue';
-import LoadingSpinner from '@/components/client/LoadingSpinner.vue';
-import ErrorMessage from '@/components/client/ErrorMessage.vue';
-import RestaurantsCarousel from '@/components/client/RestaurantsCarousel.vue';
-import RestaurantCard from '@/components/client/RestaurantCard.vue';
-import EmptyState from '@/components/client/EmptyState.vue';
+import HeaderSection from '@/components/cliente/HederSection.vue';
+import SearchBar from '@/components/cliente/SearchBar.vue';
+import FiltersSection from '@/components/cliente/FiltersSection.vue';
+import LoadingSpinner from '@/components/cliente/LoadingSpinner.vue';
+import ErrorMessage from '@/components/cliente/ErrorMessage.vue';
+import RestaurantsCarousel from '@/components/cliente/RestaurantsCarousel.vue';
+import RestaurantCard from '@/components/cliente/RestaurantCard.vue';
+import EmptyState from '@/components/cliente/EmptyState.vue';
 
 const router = useRouter();
 
@@ -99,7 +106,7 @@ const uniqueCategorias = computed(() => {
 });
 
 const restaurantesFiltrados = computed(() => {
-  let filtered = restaurantes.value.filter(r => {
+  return restaurantes.value.filter(r => {
     const matchesSearch =
       r.nombre.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
       r.direccion.toLowerCase().includes(searchQuery.value.toLowerCase());
@@ -110,10 +117,9 @@ const restaurantesFiltrados = computed(() => {
 
     return matchesSearch && matchesCategoria && r.estado === 'Abierto';
   });
-  return filtered;
 });
 
-onMounted(() => fetchRestaurantes());
+onMounted(fetchRestaurantes);
 
 async function fetchRestaurantes() {
   loading.value = true;
@@ -123,7 +129,7 @@ async function fetchRestaurantes() {
     restaurantes.value = response.data;
   } catch (err) {
     console.error('Error al cargar:', err);
-    error.value = 'No se pudieron cargar los restaurantes. ¡Intenta de nuevo!';
+    error.value = 'No se pudieron cargar los restaurantes.';
   } finally {
     loading.value = false;
   }

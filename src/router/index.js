@@ -1,7 +1,7 @@
 // router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
 import RestaurantesLista from '@/views/cliente/RestaurantesLista.vue'
-// Importa otros componentes que necesites para las rutas
+import PaymentView from '@/views/cliente/PaymentView.vue'
 
 const routes = [
   {
@@ -12,7 +12,12 @@ const routes = [
   {
     path: '/restaurantes/:id/menu',
     name: 'RestauranteMenu',
-    component: () => import('@/views/cliente/RestauranteMenu.vue') // Ajusta la ruta
+    component: () => import('@/views/cliente/RestauranteMenu.vue')
+  },
+  {
+    path: '/payment',
+    name: 'Payment',
+    component: PaymentView
   }
   // Agrega más rutas según necesites
 ]
